@@ -1,0 +1,12 @@
+[Desktop Entry]
+Version=2023.06.08
+Encoding=UTF-8
+Name=biblioteq-pan2bq
+Comment=Transforme fichier unimarc en csv BiblioteQ
+Exec=/usr/local/biblioteq-pan2bq/lancement-biblioteq-pan2bq.sh
+Icon=/usr/local/biblioteq-pan2bq/biblioteq-pan2bq.png
+Terminal=false
+Type=Application
+Categories=Office;
+StartupNotify=true
+#MimeType=application/x-python;

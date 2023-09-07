@@ -1,0 +1,11 @@
+Architecture: amd64
+Depends:
+Maintainer: meteos77
+Package: BiblioteQ-pan2bq
+Priority: optional
+Section: Database
+Version: 1.1.0
+Description: transformation fichier Unimarc en csv format import BiblioteQ modèle 1
+ Bienvenue dans BiblioteQ-pan2bq
+ Transforme fichier unimarc en csv format BiblioteQ Modèle 1.
+ Un fichier biblioteq-pan2bq.desktop sera installé dans /usr/share/applications/.

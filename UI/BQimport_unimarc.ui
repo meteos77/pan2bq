@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>879</width>
+    <height>680</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="toolTip">
+   <string comment="Application Help tooltip"/>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <widget class="QLineEdit" name="lineEdit_unimarc">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>50</y>
+     <width>451</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Spécifier un fichier unimarc (.pan de la BDP) ou (.pan de Moccam)</string>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bouton_browseunimarc">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>381</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>85</width>
+     <height>25</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>Ouvrir le selecteur de fichier</string>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+   <property name="text">
+    <string>Spécifier Fichier source  .pan (BDP) ou Moccam</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_titre">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>681</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>Outil pour générer le fichier comprehénsible par le logiciel BiblioteQ version 2023-04</string>
+   </property>
+   <property name="layoutDirection">
+    <enum>Qt::RightToLeft</enum>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+   <property name="text">
+    <string>PAN2BQ version  2023-08-30 (32 champs)</string>
+   </property>
+   <property name="textFormat">
+    <enum>Qt::AutoText</enum>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_csv">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>80</y>
+     <width>451</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>230</width>
+     <height>25</height>
+    </size>
+   </property>
+   <property name="toolTip">
+    <string>Fichier de destination au format .csv compréhensible par BiblioteQ</string>
+   </property>
+  </widget>
+  <widget class="Line" name="decorslinebas">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>110</y>
+     <width>311</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bouton_generate">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>640</y>
+     <width>130</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>130</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string extracomment="Lance la génération du fichier .cvs">Génerer le fichier .cvs</string>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+   <property name="text">
+    <string>Générer</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bouton_browsecsv">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>351</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>85</width>
+     <height>25</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>Ouvrir le selecteur de fichier</string>
+   </property>
+   <property name="text">
+    <string>Spécifier Fichier de Sortie .csv</string>
+   </property>
+  </widget>
+  <widget class="Line" name="decorslinehaut">
+   <property name="geometry">
+    <rect>
+     <x>110</x>
+     <y>30</y>
+     <width>441</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_resultatgenerate">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>640</y>
+     <width>541</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string extracomment="Résultat">Indique le nombre de notice traités.</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_resultatanalyse">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>140</y>
+     <width>41</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Indique le nombre maximum de notice dans le fichier</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_num_notice">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>140</y>
+     <width>41</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Indique le numéro de la notice courante</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_noticenumber">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>140</y>
+     <width>131</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Numéro de notice</string>
+   </property>
+  </widget>
+  <widget class="QTextEdit" name="textEdit_resultatnoticenum">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>200</y>
+     <width>821</width>
+     <height>431</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string extracomment="Zone  de détails de la notice en cours">Détail de la notice</string>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+   <property name="html">
+    <string notr="true">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Ubuntu'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+  </widget>
+  <widget class="QSlider" name="slider_noticenum">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>180</y>
+     <width>131</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_noticeonnoticemax">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>140</y>
+     <width>30</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>sur</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bouton_exit">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>640</y>
+     <width>130</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>130</width>
+     <height>30</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string extracomment="Quitter l'application">Quitter l'application.</string>
+   </property>
+   <property name="locale">
+    <locale language="English" country="UnitedStates"/>
+   </property>
+   <property name="text">
+    <string>Quitter</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="bouton_aide">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>10</y>
+     <width>85</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="tabletTracking">
+    <bool>false</bool>
+   </property>
+   <property name="toolTip">
+    <string>Ouvre un fentre d'aide détaillé</string>
+   </property>
+   <property name="statusTip">
+    <string extracomment="Application Help "/>
+   </property>
+   <property name="text">
+    <string>Aide</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_Origine">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>130</y>
+     <width>51</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Origine</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_origine">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>130</y>
+     <width>161</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Spécifier Origine du Fichier (ex: BDP-2022-12 ou DONS-2023)</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_numeroacces">
+   <property name="geometry">
+    <rect>
+     <x>710</x>
+     <y>130</y>
+     <width>71</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="toolTip">
+    <string>Spécifier le dernier numéro utilisé dans la base ou 0 pour fichier BDP.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_numeroacces">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>130</y>
+     <width>171</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Dernier Numéro Accès utilisé</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>slider_noticenum</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>label_noticeonnoticemax</receiver>
+   <slot>show()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>215</x>
+     <y>178</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>214</x>
+     <y>154</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bouton_browseunimarc</sender>
+   <signal>released()</signal>
+   <receiver>lineEdit_num_notice</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>742</x>
+     <y>72</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>170</x>
+     <y>154</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
