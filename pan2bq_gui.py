@@ -216,7 +216,7 @@ app = QApplication(sys.argv)
 ## Debut TRADUCTIONapp = QApplication
 locale = QLocale()
 translators = []
-for prefixeQm in ("Translations/monapplication_", "Translations/qt_", "Translations/qtbase_"):
+for prefixeQm in ("Translations/pan2bq.", "Translations/qt_", "Translations/qtbase_"):
     translator = QTranslator()
     translators.append(translator)
     translator.load(locale,prefixeQm)
