@@ -1,15 +1,19 @@
 TO-DO 
-FAIT avec version 2023-08-08 -> 2023-08-30
+FAIT
 - mettre le selecteur sur le bureau $HOME/Bureau
 - suppression de alternative_id_1 si pas ark:/
 - suppression des =inconnu ..."
 - formatage de la date pour pdate
 - analyser et transformer entrée utilisateur sur my_originality et placer dans le champ my_origin
 - my_purchase_date -> deduit de my_originality (LIB-2022 -> Livre achete en 2022 ; BDP-2022-12 -> Pret de 01/12/2022 ; DON-2022 -> Don de 01/01/2022) ...
+- mise en place pour les traductions
+- message en cas de case origine ou numero d'accès vide.
 
-# pas encore determiner par la bdp
-- 995$n -> my_date_of_reform
-
+AFAIRE
+# pas encore determiner par la bdp :
+- 995$n -> my_date_of_reform.
+- verification si numero d'acces est un nombre.
+- vérification si fichier source est un fichier unimarc.
 
 
 
