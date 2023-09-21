@@ -21,7 +21,7 @@ import sys
 
 from PyQt5 import QtWidgets
 from PyQt5.Qt import QDir
-from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog
+from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QMessageBox
 from PyQt5.QtCore import QTranslator, QLocale
 from PyQt5.uic import loadUi
 
@@ -190,9 +190,26 @@ class MainWindow(QDialog):
         destinationfile = self.lineEdit_csv.text()
         originaly = self.lineEdit_origine.text()
         numeroacces = self.lineEdit_numeroacces.text()
-        retourgenerate = generatecsv(sourcefile, destinationfile,originaly,numeroacces)
-        self.lineEdit_resultatgenerate.setText(retourgenerate)
+        valide_originaly = ""
+        valide_numeroacces = ""
 
+        if originaly:
+            valide_originaly = "ok"
+        else:
+            print(self.tr("Pas d'origine spécifiée - Merci de compléter."))
+            QMessageBox.warning(self,self.tr("Attention"),self.tr("L'origine des livres n'est pas spécifiée"))
+        if numeroacces:
+            valide_numeroacces = "ok"
+        else:
+            print(self.tr("Pas de numero d'acces spécifié - Merci de compléter."))
+            QMessageBox.warning(self,self.tr("Attention"),self.tr("Le numéro d'accès n'est pas spécifié"))
+
+        if valide_originaly == "ok" and valide_numeroacces == "ok":
+            retourgenerate = generatecsv(sourcefile, destinationfile,originaly,numeroacces)
+            self.lineEdit_resultatgenerate.setText(retourgenerate)
+        else:
+            print(self.tr("Erreur Merci de vérifier les données entrées."))
+            QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées."))
 
 app = QApplication(sys.argv)
 
