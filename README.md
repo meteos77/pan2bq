@@ -1,16 +1,17 @@
 I'm not a developer, so there's no guarantee that it will work for you.
-
-
 Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez vous.
 
+
+Merci à "Textbrowser" pour son superbe logiciel de gestion de bibliothèque : BiblioteQ.
+
+pan2bq est un outil pour transformer les fichiers unimarc (.pan) 
+vers un fichier au format csv (.csv) importable dans BiblioteQ.
 ------------------------------------------------------------
 ----------------- testé sur LinuxMint21.2 ------------------
-
 python3.11
-yaz-marcdump (apt-get install yaz)
+yaz-marcdump (apt-get install yaz) - permet de convertir le fichier unimarc si non utf8.
 
-
---- modules python a avoir ---
+------ modules python a installer ------
 csv
 os
 sys
@@ -23,8 +24,6 @@ python-magic 0.4.16 # pour vérifier si fichier est en MARC21.
 PyQt5 5.14.1 (pip install PyQt5)
 unidecode 1.1.1 
 ------------------------------------------------------------
-pan2bq est un outil pour transformer les fichiers unimarc (.pan) vers un fichier au format csv (.csv).
-
 - le format du fichier csv est adapté pour l'importation via l'import csv de BiblioteQ (modele 1).
 - place les données du fichier unimarc dans les champs de BiblioteQ.
 - certains champs 995 (spécifiques à l'échange de données entre bibliothèque française) sont traités.

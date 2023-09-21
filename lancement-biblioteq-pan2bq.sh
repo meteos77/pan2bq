@@ -1,8 +1,9 @@
 #!/usr/bin/bash
 
-# Les variables
-export REPERTOIRETRAVAILPAN="/home/yo/PAN2BQ-Devel/pan"
-export REPERTOIRETRAVAILCSV="/home/yo/PAN2BQ-Devel/csv"
+# script pour le lancement de pan2bq
 
-cd /usr/local/biblioteq-pan2bq
+# Les variables
+
+# Lancement
+cd /opt/biblioteq-pan2bq
 ./pan2bq_gui
