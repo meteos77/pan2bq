@@ -196,22 +196,16 @@ class MainWindow(QDialog):
 
 app = QApplication(sys.argv)
 
-## Debut TRADUCTIONapp = QApplication(sys.argv)
-ENLANGUENATIVE = len(sys.argv) == 1
-if ENLANGUENATIVE:
-    locale = QLocale()
-else:
-    LANGUEPAYS = sys.argv[1]
-    translators = []
-    for prefixeQm in ("Translations/pan2bq.", "Translations/qt_", "Translations/qtbase_"):
-        translator = QTranslator()
-        translators.append(translator)
-        if ENLANGUENATIVE:
-            translator.load(locale,prefixeQm)
-        else:
-            translator.load(prefixeQm+LANGUEPAYS)
-            app.installTranslator(translator)
+## Debut TRADUCTIONapp = QApplication
+locale = QLocale()
+translators = []
+for prefixeQm in ("Translations/monapplication_", "Translations/qt_", "Translations/qtbase_"):
+    translator = QTranslator()
+    translators.append(translator)
+    translator.load(locale,prefixeQm)
+    app.installTranslator(translator)
 # Fin TRADUCTION
+
 mainwindow = MainWindow()
 widget = QtWidgets.QStackedWidget()
 widget.addWidget(mainwindow)
