@@ -204,13 +204,54 @@ class MainWindow(QDialog):
             print(self.tr("Pas de numero d'acces spécifié - Merci de compléter."))
             QMessageBox.warning(self,self.tr("Attention"),self.tr("Le numéro d'accès n'est pas spécifié"))
 
+        print("la varialbe originaly contient : " + originaly)
+        if "BDP" in originaly:
+            if numeroacces == "0":
+                print("OK BDP avec 0")
+                valide_originaly="ok"
+                valide_numeroacces="ok"
+            else:
+                valide_numeroacces = "pb" 
+                print(self.tr("Erreur Merci de vérifier les données entrées car avec BDP le numero devrait être 0."))
+                QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées \n avec BDP le numero devrait être 0."))
+
+
+        if "LIB" in originaly:
+            if numeroacces != "0":
+                valide_numeroacces="ok"
+                valide_originaly="ok"
+            else:
+                valide_originaly = "pb"
+                print(self.tr("Erreur Merci de vérifier les données entrées car avec LIB le numero devrait être différent de 0."))
+                QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées car avec LIB le numero devrait être différent de 0."))
+            
+
+        if "DON" in originaly:
+            if numeroacces != "0":
+                valide_numeroacces="ok"
+                valide_originaly="ok"
+            else:
+                valide_originaly = "pb"
+                print(self.tr("Erreur Merci de vérifier les données entrées car avec DON le numero devrait être différent de 0."))
+                QMessageBox.critical(self,self.tr("Attention"),self.tr("MMerci de vérifier les données entrées car avec DON le numero devrait être différent de 0."))
+    
+                print(valide_numeroacces)
+
+        if "DON" in originaly or "LIB" in originaly or "BDP" in originaly:
+            pass
+        else:
+            print(self.tr("Erreur l'entrée d'orgine accepte les valeurs DON, LIB ou BDP"))
+            QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées car l'entrée d'orgine accepte les valeurs DON, LIB ou BDP"))
+            valide_originaly = "pb" 
+
+        # TEST FINAL
         if valide_originaly == "ok" and valide_numeroacces == "ok":
             retourgenerate = generatecsv(sourcefile, destinationfile,originaly,numeroacces)
             self.lineEdit_resultatgenerate.setText(retourgenerate)
         else:
             print(self.tr("Erreur Merci de vérifier les données entrées."))
             QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées."))
-
+       
 app = QApplication(sys.argv)
 
 ## Debut TRADUCTIONapp = QApplication
