@@ -1,19 +1,29 @@
-TO-DO 
+TO-DO
 FAIT
+- analyser et transformer entrée utilisateur sur my_originality et placer dans le champ my_origin
+- analyseur formatage de la date pour pdate
+- analyseur GUI message en cas de case numero d'accès vide ou non 0 pour BDP dans origine.
+- analyseur GUI message en cas de case origine non conforme (BDP-AAAA-MM ; LIB-AAAA ; DON-AAAA
+- analyseur my_accession_number -> analyseur 995$a sur fichier BDP_WEB
+- analyseur my_accession_number -> analyseur 995$f sur fichier BDP_MAIL
+- analyseur my_date_of_reform -> analyseur 995$n sur fichier BDP_WEB
+- analyseur my_purchase_date -> analyseur 995$m sur fichier BDP_WEB
+- analyseur my_purchase_date -> deduit de my_originality (LIB-2022 -> Livre achete en 2022 ; BDP-2022-12 -> Pret de 01/12/2022 ; DON-2022 -> Don de 01/01/2022) ...
+- analyseur suppression de alternative_id_1 si pas ark:/
+- analyseur suppression des =inconnu ..."
+- analyseur : transforme entrée utilisateur sur my_originality et placer dans le champ my_origin
+- formatage de la date pour pdate
+- message en cas de case origine ou numero d'accès vide.
 - mettre le selecteur sur le bureau $HOME/Bureau
+- mise en place pour les traductions
+- my_purchase_date -> deduit de my_originality (LIB-2022 -> Livre achete en 2022 ; BDP-2022-12 -> Pret de 01/12/2022 ; DON-2022 -> Don de 01/01/2022) ...
 - suppression de alternative_id_1 si pas ark:/
 - suppression des =inconnu ..."
-- formatage de la date pour pdate
-- analyser et transformer entrée utilisateur sur my_originality et placer dans le champ my_origin
-- my_purchase_date -> deduit de my_originality (LIB-2022 -> Livre achete en 2022 ; BDP-2022-12 -> Pret de 01/12/2022 ; DON-2022 -> Don de 01/01/2022) ...
-- mise en place pour les traductions
-- message en cas de case origine ou numero d'accès vide.
 
 AFAIRE
-# pas encore determiner par la bdp :
-- 995$n -> my_date_of_reform.
 - verification si numero d'acces est un nombre.
-- vérification si fichier source est un fichier unimarc.
+- vérification si fichier source est un fichier unimarc (message par GUI au lieu de quitter).
+- vérification si BDP-AAAA-MM ou DON-AAAA ou LIB-AAAA ( par date pattern en REGEX "^(?:\\d{4})-(?:\\d{2})-(?:\\d{2})T(?:\\d{2}):(?:\\d{2}):(?:\\d{2}(?:\\.\\d*)?)(?:(?:-(?:\\d{2}):(?:\\d{2})|Z)?)$")
 
 
 

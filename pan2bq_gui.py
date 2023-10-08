@@ -192,6 +192,7 @@ class MainWindow(QDialog):
         numeroacces = self.lineEdit_numeroacces.text()
         valide_originaly = ""
         valide_numeroacces = ""
+        originaly = originaly.upper()
 
         if originaly:
             valide_originaly = "ok"
@@ -215,6 +216,16 @@ class MainWindow(QDialog):
                 print(self.tr("Erreur Merci de vérifier les données entrées car avec BDP le numero devrait être 0."))
                 QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées \n avec BDP le numero devrait être 0."))
 
+        if "BDP" in originaly:
+            if len(originaly)==11:
+                valide_originaly="ok"
+                valide_patron="ok"
+            else:
+                valide_patron="pb"
+                print(self.tr("Erreur Merci de vérifier les données entrées ne correspondent pas au patron BDP-AAAA-MM"))
+                QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées ne correspondent pas au patron BDP-AAAA-MM"))
+
+
 
         if "LIB" in originaly:
             if numeroacces != "0":
@@ -225,6 +236,15 @@ class MainWindow(QDialog):
                 print(self.tr("Erreur Merci de vérifier les données entrées car avec LIB le numero devrait être différent de 0."))
                 QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées car avec LIB le numero devrait être différent de 0."))
             
+        if "LIB" in originaly:
+            if len(originaly)==8:
+                valide_originaly="ok"
+                valide_patron="ok"
+            else:
+                valide_patron="pb"
+                print(self.tr("Erreur Merci de vérifier les données entrées ne correspondent pas au patron LIB-AAAA"))
+                QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées ne correspondent pas au patron LIB-AAAA"))
+
 
         if "DON" in originaly:
             if numeroacces != "0":
@@ -234,6 +254,16 @@ class MainWindow(QDialog):
                 valide_originaly = "pb"
                 print(self.tr("Erreur Merci de vérifier les données entrées car avec DON le numero devrait être différent de 0."))
                 QMessageBox.critical(self,self.tr("Attention"),self.tr("MMerci de vérifier les données entrées car avec DON le numero devrait être différent de 0."))
+
+        if "DON" in originaly:
+            if len(originaly)==8:
+                valide_originaly="ok"
+                valide_patron="ok"
+            else:
+                valide_patron="pb"
+                print(self.tr("Erreur Merci de vérifier les données entrées ne correspondent pas au patron LIB-AAAA"))
+                QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées ne correspondent pas au patron LIB-AAAA"))
+
     
                 print(valide_numeroacces)
 
@@ -245,13 +275,12 @@ class MainWindow(QDialog):
             valide_originaly = "pb" 
 
         # TEST FINAL
-        if valide_originaly == "ok" and valide_numeroacces == "ok":
+        if valide_originaly == "ok" and valide_numeroacces == "ok" and valide_patron == "ok":
             retourgenerate = generatecsv(sourcefile, destinationfile,originaly,numeroacces)
             self.lineEdit_resultatgenerate.setText(retourgenerate)
         else:
-            print(self.tr("Erreur Merci de vérifier les données entrées."))
-            QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées."))
-       
+            print("probleme a régler")
+
 app = QApplication(sys.argv)
 
 ## Debut TRADUCTIONapp = QApplication

@@ -41,7 +41,7 @@ from unicodedata import normalize
 
 def analyseurunimarcfr(notice,originaly,numeroacces):
 ## les variables
-
+    originaly = originaly.upper()
 
 # target_audience # voir unimarc 333$a ou 995$j (moins précis)
 # 0-3 ans
@@ -61,7 +61,6 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
 # Professionnels
 # Tous niveaux
 # Adultes & ados
-
 
 #    global my_target_audience
     my_target_audience=""
@@ -103,18 +102,43 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
 #    global my_accessionnumber
     my_accessionnumber = ""
     my_accessionnumber_temp = ""
+
+    # test si fichier BDP vient de mail ou de recuperation depuis le site
+    # pour 995$a ou 995$f pour l'accession number
+    testprovenancefichier=""
+    testprovenancefichiertemp = ""
     for field in notice.get_fields('995'):
-        if field['f'] is not None:
-            my_accessionnumber_temp = field['f']
-            my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
+        if field['a'] is not None:
+            testprovenancefichiertemp = field['a']
+            print("testprovenancefichiertemp = " + str(testprovenancefichiertemp))
+                
+            if "Médiathèque Départementale du Jura" in testprovenancefichiertemp:
+                testprovenancefichier = "fichiermailBDP"
+                print("le fichier est de type " + testprovenancefichier)
+                if field['f'] is not None:
+                    my_accessionnumber_temp = field['f']
+                    my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
+
+            else:
+                testprovenancefichier = "fichierwebBDP" 
+                print("le fichier est de type " + testprovenancefichier)
+                if field['a'] is not None:
+                    my_accessionnumber_temp = field['a']
+                    my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
+                else:
+                    print("le fichier ne semble pas être un fichier de la BDP")                            
+        
+    
+        print("numero acces  =" + my_accessionnumber)
+        """
         elif field['f'] is None:
             print('Pas accession_number')     
-    if len(my_accessionnumber)==0:
-        my_accessionnumber_temp = ""
-        my_accessionnumber_temp = str(numeroacces)
-        my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
-    
-
+            if len(my_accessionnumber)==0:
+                my_accessionnumber_temp = ""
+                my_accessionnumber_temp = str(numeroacces)
+                my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
+        """  
+#    print("testprovenancefichier = " + testprovenancefichier) 
         
 # alternative_id (ark)
 #    global my_alternate_id_1
@@ -288,9 +312,21 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             pass
 
 # date_of_reform
-#Fichier de la BDP -> 995$n = pas actif pour le moment.
+#Fichier de la BDP -> 995$n = pas actif pour le moment sauf recup WEB.
 # voir purchase_date car calcul + 1 an
-
+# si fichier BDP provenant du WEB (pas de mail)
+    my_date_of_reform_temp = ""
+    my_date_of_reform = ""
+    if testprovenancefichier == "fichierwebBDP":
+        for field in notice.get_fields('995'):
+            if field['n'] is not None:
+                my_date_of_reform_temp = field['n']
+                my_date_of_reform = normalize('NFC', my_date_of_reform_temp)
+                my_date_of_reform_AAAA = my_date_of_reform [6:10]
+                my_date_of_reform_MM = my_date_of_reform [3:5]
+                my_date_of_reform_JJ = my_date_of_reform [0:2]
+                my_date_of_reform = str(my_date_of_reform_MM + "/" + my_date_of_reform_JJ + "/" + my_date_of_reform_AAAA) # format US
+ 
 # deweynumber
     my_deweynumber = ""
     my_deweynumber_temp = ""
@@ -465,8 +501,8 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
     elif "LIB-" in originaly:
          my_origin = "Achats Librairie"
     else:
-        my_origin = "BOF"
-    print(my_origin)
+        my_origin = "Pas d'origine connue"
+#    print(my_origin)
 
 
 # originaly (la variable est définie dans l'interface de lancement)
@@ -474,6 +510,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
     my_originaly_temp = ""
     my_originaly_temp = originaly
     my_originaly = normalize('NFC', my_originaly_temp)
+    my_originaly = my_originaly.upper()
 
 # pdate (unimarc 210 ou 214 a faire)
 # a faire supprimer : DL ou impr. avant la date
@@ -539,20 +576,30 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
     elif "LIB-" in originaly:
         my_purchase_date_temp = originaly [4:9]
         my_purchase_date = "01/01/" + my_purchase_date_temp
-    elif "BDP-" in originaly:
-        my_purchase_date_temp_AAAA = originaly [4:8]
-        my_purchase_date_temp_MM = originaly [9:11]
-        my_purchase_date = my_purchase_date_temp_MM + "/01/" + my_purchase_date_temp_AAAA     # attention format Américain MM/DD/YYYY
-    
-# traitement de date_of_reform si BDP ( arrivée + 1 an)
-    my_date_of_reform = "" 
-    if "BDP-" in originaly:
-        my_purchase_date_temp_AAAA_int = int(my_purchase_date_temp_AAAA)
-        print(my_purchase_date_temp_AAAA_int)
-        my_purchase_date_temp_AAAA_int_ajout = my_purchase_date_temp_AAAA_int + 1
-        print(my_purchase_date_temp_AAAA_int_ajout)
-        my_purchase_date_temp_AAAA_int_ajout_str = str(my_purchase_date_temp_AAAA_int_ajout)
-        my_date_of_reform = my_purchase_date_temp_MM + "/01/" + my_purchase_date_temp_AAAA_int_ajout_str
+
+# si fichier BDP provenant du WEB (pas de mail)
+    elif testprovenancefichier == "fichierwebBDP":
+        print("fichier depuis WEB")
+        for field in notice.get_fields('995'):
+            if field['m'] is not None:
+                my_purchase_date_temp = field['m']
+                my_purchase_date = normalize('NFC', my_purchase_date_temp)
+                print("Date de livraison format FR : " + my_purchase_date) 
+                if "BDP" in originaly:
+                    my_purchase_date_AAAA = my_purchase_date [6:10]
+                    my_purchase_date_MM = my_purchase_date [3:5]
+                    my_purchase_date_JJ = my_purchase_date [0:2]                 
+                    my_purchase_date = str(my_purchase_date_MM + "/" + my_purchase_date_JJ + "/" + my_purchase_date_AAAA)
+   
+    else:
+        my_purchase_date_AAAA = originaly [4:8]
+        my_purchase_date_MM = originaly [9:11]
+        my_purchase_date = my_purchase_date_MM + "/01/" + my_purchase_date_AAAA
+        # calcul de la date de retour (+ 1an)
+        my_purchase_date_AAAA_int = int(my_purchase_date_AAAA)
+        my_purchase_date_AAAA_int_ajout = my_purchase_date_AAAA_int + 1
+        my_purchase_date_AAAA_int_ajout_str = str(my_purchase_date_AAAA_int_ajout)
+        my_date_of_reform = my_purchase_date_MM + "/01/" + my_purchase_date_AAAA_int_ajout_str
 
 
 # publisher
