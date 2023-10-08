@@ -182,7 +182,7 @@ par exemple BDP-2022-12 ou Librairie-2022-12</string>
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>80</y>
+     <y>120</y>
      <width>681</width>
      <height>41</height>
     </rect>
@@ -220,6 +220,19 @@ compréhensible par le logiciel BiblioteQ</string>
    <property name="text">
     <string>Spécifier 0 si fichier .pan vient de la BDP.
  Si il faut spécifier le numéro d'accès, mettre le dernier numéro occupé dans la base.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>59</y>
+     <width>641</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Les fichiers reçus par mail et les fichiers téléchargés sur le site de la BDP. (995$a ou 995$f)</string>
    </property>
   </widget>
  </widget>
