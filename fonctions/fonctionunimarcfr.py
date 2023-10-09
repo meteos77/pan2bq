@@ -130,15 +130,14 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
         
     
         print("numero acces  =" + my_accessionnumber)
-        """
-        elif field['f'] is None:
-            print('Pas accession_number')     
-            if len(my_accessionnumber)==0:
-                my_accessionnumber_temp = ""
-                my_accessionnumber_temp = str(numeroacces)
-                my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
-        """  
-#    print("testprovenancefichier = " + testprovenancefichier) 
+        
+        
+    if len(my_accessionnumber)==0:
+        my_accessionnumber_temp = ""
+        my_accessionnumber_temp = str(numeroacces)
+        my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
+    
+
         
 # alternative_id (ark)
 #    global my_alternate_id_1
