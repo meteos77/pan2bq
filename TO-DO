@@ -16,6 +16,7 @@ FAIT
 - message en cas de case origine ou numero d'accès vide.
 - mettre le selecteur sur le bureau $HOME/Bureau
 - mise en place pour les traductions
+- modification du nom du fichier de destination xxx-2_AAAA devrait etre xxx-3_AAAA
 - my_purchase_date -> deduit de my_originality (LIB-2022 -> Livre achete en 2022 ; BDP-2022-12 -> Pret de 01/12/2022 ; DON-2022 -> Don de 01/01/2022) ...
 - suppression de alternative_id_1 si pas ark:/
 - suppression des =inconnu ..."
@@ -24,6 +25,8 @@ AFAIRE
 - verification si numero d'acces est un nombre.
 - vérification si fichier source est un fichier unimarc (message par GUI au lieu de quitter).
 - vérification si BDP-AAAA-MM ou DON-AAAA ou LIB-AAAA ( par date pattern en REGEX "^(?:\\d{4})-(?:\\d{2})-(?:\\d{2})T(?:\\d{2}):(?:\\d{2}):(?:\\d{2}(?:\\.\\d*)?)(?:(?:-(?:\\d{2}):(?:\\d{2})|Z)?)$")
+
+
 
 
 

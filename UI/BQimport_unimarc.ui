@@ -403,7 +403,9 @@ p, li { white-space: pre-wrap; }
     </rect>
    </property>
    <property name="toolTip">
-    <string>Spécifier Origine du Fichier (ex: BDP-2022-12 ou DONS-2023)</string>
+    <string>Spécifier Origine du Fichier
+ exemples : BDP-2022-12 ou DON-2023 ou LIB-2023 
+ donc BDP-AAAA-AA ; DON-AAAA ; LIB-AAAA)</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="lineEdit_numeroacces">
