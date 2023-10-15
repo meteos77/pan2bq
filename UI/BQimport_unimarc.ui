@@ -97,7 +97,7 @@
     <locale language="English" country="UnitedStates"/>
    </property>
    <property name="text">
-    <string>PAN2BQ version  2023-10-09      (32 champs)</string>
+    <string>PAN2BQ version  2023-10-15      (32 champs)</string>
    </property>
    <property name="textFormat">
     <enum>Qt::AutoText</enum>

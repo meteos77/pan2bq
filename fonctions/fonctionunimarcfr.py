@@ -11,7 +11,7 @@ Transforme le fichier de la BDP ISO-2709 encoding utf-8
 encoding entrée : utf8
 encoding sortie : utf8 normalize('NFC'
  La forme normale C (NFC) applique d'abord la décomposition canonique, puis compose à nouveau les caractères pré-combinés.
-           
+
 version 2.0 :
 fonction analyseurMarcFr pour analyser fichier unimarc ISO2709 de la BDP
 
@@ -20,7 +20,7 @@ fonction analyseurMarcFr pour analyser fichier unimarc ISO2709 de la BDP
 #
 Version 1.6
 995 $m : date d'achat -> '
-995 $n : date de réforme -> 
+995 $n : date de réforme ->
 Decomposition de origine (originality pop up : LIB-2022) en origine (Librairie)
 ajout de
 my_date_of_reform,
@@ -70,7 +70,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             if field['a'] is not None:
                 my_target_audience_temp = field['a']
                 my_target_audience = normalize('NFC', str(my_target_audience_temp))
-        
+
 
 # si my_target_audience est vide alors passer par le champs 995 $j
     if len(my_target_audience)==0:
@@ -94,7 +94,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
     if len(my_target_audience)==0:
         my_target_audience_temp = ""
     my_target_audience = normalize('NFC', str(my_target_audience_temp))
-        
+
 
 
     # accession_number
@@ -105,14 +105,16 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
 
     # test si fichier BDP vient de mail ou de recuperation depuis le site
     # pour 995$a ou 995$f pour l'accession number
+    global testprovenancefichier
     testprovenancefichier=""
     testprovenancefichiertemp = ""
     for field in notice.get_fields('995'):
         if field['a'] is not None:
             testprovenancefichiertemp = field['a']
             print("testprovenancefichiertemp = " + str(testprovenancefichiertemp))
-                
+
             if "Médiathèque Départementale du Jura" in testprovenancefichiertemp:
+
                 testprovenancefichier = "fichiermailBDP"
                 print("le fichier est de type " + testprovenancefichier)
                 if field['f'] is not None:
@@ -120,25 +122,25 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
                     my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
 
             else:
-                testprovenancefichier = "fichierwebBDP" 
+                testprovenancefichier = "fichierwebBDP"
                 print("le fichier est de type " + testprovenancefichier)
                 if field['a'] is not None:
                     my_accessionnumber_temp = field['a']
                     my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
                 else:
-                    print("le fichier ne semble pas être un fichier de la BDP")                            
-        
-    
+                    print("le fichier ne semble pas être un fichier de la BDP")
+
+
         print("numero acces  =" + my_accessionnumber)
-        
-        
+
+
     if len(my_accessionnumber)==0:
         my_accessionnumber_temp = ""
         my_accessionnumber_temp = str(numeroacces)
         my_accessionnumber = normalize('NFC', my_accessionnumber_temp)
-    
 
-        
+
+
 # alternative_id (ark)
 #    global my_alternate_id_1
     my_alternate_id_1 = ""
@@ -148,10 +150,10 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             my_alternate_id_1_temp = field
             my_alternate_id_1_temp = str(my_alternate_id_1_temp)
             # permet de ne garder que la partiea ark
-            
+
             # exemple
             # str = "Welcome to WayToLearnX."
-            # Vérifier si la sous-chaine se trouve dans la chaine principale 
+            # Vérifier si la sous-chaine se trouve dans la chaine principale
             # if "WayToLearnX" in str:
             #    print ('Sous-chaîne trouvée')
             #else:
@@ -159,7 +161,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             if "ark:/" in my_alternate_id_1_temp:
                 (my_adresse,my_alternate_id_1_temp2) = my_alternate_id_1_temp.split('.fr/')
                 my_alternate_id_1 = normalize('NFC', my_alternate_id_1_temp2)
-            else: 
+            else:
                 my_alternate_id_1 = ""
         #elif field is None:
          #   my_alternate_id_1 = ""
@@ -248,18 +250,21 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             pass
             my_binding_type = ""
 
-# callnumber
+# callnumber # cote
     my_callnumber = ""
     my_callnumber_temp = ""
-    for field in notice.get_fields('995'):
-        if field['f'] is not None:
-            my_callnumber_temp = field['f']
-            my_callnumber= normalize('NFC', my_callnumber_temp)
-        elif field['f'] is None:
-            my_callnumber = ""
-        else:
-            my_callnumber = ""
-        pass
+
+    if testprovenancefichier == "fichiermailBDP":
+        for field in notice.get_fields('995'):
+            if field['k'] is not None:
+                my_callnumber_temp = field['f']
+                my_callnumber= normalize('NFC', my_callnumber_temp)
+
+    if testprovenancefichier == "fichierwebBDP":
+        for field in notice.get_fields('995'):
+            if field['f'] is not None:
+                my_callnumber_temp = field['f']
+                my_callnumber= normalize('NFC', my_callnumber_temp)
 
 # category
 # (unimarc 606$a)
@@ -325,7 +330,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
                 my_date_of_reform_MM = my_date_of_reform [3:5]
                 my_date_of_reform_JJ = my_date_of_reform [0:2]
                 my_date_of_reform = str(my_date_of_reform_MM + "/" + my_date_of_reform_JJ + "/" + my_date_of_reform_AAAA) # format US
- 
+
 # deweynumber
     my_deweynumber = ""
     my_deweynumber_temp = ""
@@ -388,7 +393,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
     my_lccontrolnumber = ""
     my_lccontrolnumber_temp = ""
     for field in notice.get_fields('215'):
-        try:        
+        try:
             if field['a'] is not None:
                 my_lccontrolnumber_a = field['a']
                 if field['c'] is not None:
@@ -405,25 +410,53 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
 # location
     my_location=""
     my_location_temp=""
-    for field in notice.get_fields('995'):
-        if field['k'] is not None:
-            my_deweynumber_temp = field['k']
-            my_location_temp = my_deweynumber_temp[0:2]
-            if( my_location_temp.isdigit()):
-                my_location_temp = my_deweynumber_temp[0:1]
-                my_location_temp = my_location_temp.replace(" ", "")
-                if( my_target_audience == "Jeunesse"):
-                    my_location_temp="E" + my_location_temp
-
-                my_location_temp2 = fonctionlocationgenre_995k.generatetraduction(my_location_temp)
-                my_location = normalize('NFC', my_location_temp2)
-            else:
+    print("la provenance du fichier est : " + testprovenancefichier)
+    if testprovenancefichier == "fichiermailBDP":
+        print("995$k pour la location")
+        for field in notice.get_fields('995'):
+            if field['k'] is not None:
+                my_deweynumber_temp = field['k']
                 my_location_temp = my_deweynumber_temp[0:2]
-                my_location_temp = my_location_temp.replace(" ", "")
-                my_location_temp2 = fonctionlocationgenre_995k.generatetraduction(my_location_temp)
-                my_location = normalize('NFC', my_location_temp2)
-        elif field['k'] is None:
-            my_location = ""
+                if( my_location_temp.isdigit()):
+                    my_location_temp = my_deweynumber_temp[0:1]
+                    my_location_temp = my_location_temp.replace(" ", "")
+                    if( my_target_audience == "Jeunesse"):
+                        my_location_temp="E" + my_location_temp
+
+                    my_location_temp2 = fonctionlocationgenre_995k.generatetraduction(my_location_temp)
+                    my_location = normalize('NFC', my_location_temp2)
+                else:
+                    my_location_temp = my_deweynumber_temp[0:2]
+                    my_location_temp = my_location_temp.replace(" ", "")
+                    my_location_temp2 = fonctionlocationgenre_995k.generatetraduction(my_location_temp)
+                    my_location = normalize('NFC', my_location_temp2)
+            elif field['k'] is None:
+                my_location = ""
+
+    if testprovenancefichier == "fichierwebBDP":
+        print("995$f pour la location")
+        for field in notice.get_fields('995'):
+            if field['f'] is not None:
+                my_deweynumber_temp = field['f']
+                my_location_temp = my_deweynumber_temp[0:2]
+                if( my_location_temp.isdigit()):
+                    my_location_temp = my_deweynumber_temp[0:1]
+                    my_location_temp = my_location_temp.replace(" ", "")
+                    if( my_target_audience == "Jeunesse"):
+                        my_location_temp="E" + my_location_temp
+
+                    my_location_temp2 = fonctionlocationgenre_995k.generatetraduction(my_location_temp)
+                    my_location = normalize('NFC', my_location_temp2)
+                else:
+                    my_location_temp = my_deweynumber_temp[0:2]
+                    my_location_temp = my_location_temp.replace(" ", "")
+                    my_location_temp2 = fonctionlocationgenre_995k.generatetraduction(my_location_temp)
+                    my_location = normalize('NFC', my_location_temp2)
+            elif field['f'] is None:
+                my_location = ""
+
+
+
 
 # marc_tags
     my_marc_tags = ""
@@ -525,7 +558,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             my_pdate210 = my_pdate210[0:4]
             # ajout de MM/JJ + AAAA
             my_pdate = "01/01/" + my_pdate210
-        
+
     if len(my_pdate)==0:
         for field in notice.get_fields('214'):
             # print(field)
@@ -550,7 +583,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             my_place = normalize('NFC', my_place_temp)
         elif field['a'] is None:
             my_place = ""
-# place : 214$a        
+# place : 214$a
     if len(my_place)==0:
         for field in notice.get_fields('214'):
             if field['a'] is not None:
@@ -583,13 +616,13 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
             if field['m'] is not None:
                 my_purchase_date_temp = field['m']
                 my_purchase_date = normalize('NFC', my_purchase_date_temp)
-                print("Date de livraison format FR : " + my_purchase_date) 
+                print("Date de livraison format FR : " + my_purchase_date)
                 if "BDP" in originaly:
                     my_purchase_date_AAAA = my_purchase_date [6:10]
                     my_purchase_date_MM = my_purchase_date [3:5]
-                    my_purchase_date_JJ = my_purchase_date [0:2]                 
+                    my_purchase_date_JJ = my_purchase_date [0:2]
                     my_purchase_date = str(my_purchase_date_MM + "/" + my_purchase_date_JJ + "/" + my_purchase_date_AAAA)
-   
+
     else:
         my_purchase_date_AAAA = originaly [4:8]
         my_purchase_date_MM = originaly [9:11]
@@ -647,7 +680,7 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
 # PB si plusieurs ligne 225
     my_volume_number = ""
     my_volume_number_temp = ""
-    try:    
+    try:
         for field in notice.get_fields('225'):
             if field['v'] is not None:
                 my_volume_number_temp = field['v']
@@ -664,11 +697,11 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
 
     return [my_accessionnumber, my_alternate_id_1, my_author, my_binding_type,
             my_callnumber, my_category, my_condition, my_date_of_reform,
-            my_description, my_deweynumber, my_edition, my_isbn10, my_isbn13, 
+            my_description, my_deweynumber, my_edition, my_isbn10, my_isbn13,
             my_keyword, my_language, my_lccontrolnumber, my_location,
             my_marc_tags, my_monetary_units, my_multivolume_set_isbn, my_origin,
             my_originaly, my_pdate, my_place, my_price, my_publisher,
-            my_purchase_date, my_quantity, my_target_audience, my_title, my_url, 
+            my_purchase_date, my_quantity, my_target_audience, my_title, my_url,
             my_volume_number]
 
 # fin de l'AnalyseurUnimarc

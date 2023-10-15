@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 repertoiredestination="biblioteq-pan2bq"
-fichierdestination="BiblioteQ-pan2bq-2023-10-09_32champs"
+fichierdestination="BiblioteQ-pan2bq-2023-10-15_32champs"
 
 if [ ! -x /usr/bin/dpkg-deb ]; then
     echo "Please install dpkg-deb."
