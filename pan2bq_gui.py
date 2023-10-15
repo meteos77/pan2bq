@@ -146,12 +146,16 @@ class MainWindow(QDialog):
 
            # Indique le nom du fichier de sortie.
             nomfichiersource = str(fname[0])
-            nomfichiersourcepartie = nomfichiersource.split("-2_")
-            nomfichiersourcepartie1 = nomfichiersourcepartie[0]
-            nomfichiersourcepartie2 = nomfichiersourcepartie[1]
-            dname = nomfichiersourcepartie1 + "-3_" + nomfichiersourcepartie2 + ".csv"
+            if "-2_" in nomfichiersource:
+                print("fichier createur")
+                nomfichiersourcepartie = nomfichiersource.split("-2_")
+                nomfichiersourcepartie1 = nomfichiersourcepartie[0]
+                nomfichiersourcepartie2 = nomfichiersourcepartie[1]
+                dname = nomfichiersourcepartie1 + "-3_" + nomfichiersourcepartie2 + ".csv"
+            else:
+                dname = str(fname[0]+".csv")
+
             print(dname)
-#            dname = str(fname[0]+".csv")
             self.lineEdit_csv.setText(dname)
 
             # Place la notice numero 1
