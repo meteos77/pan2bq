@@ -20,13 +20,11 @@ FAIT
 - my_purchase_date -> deduit de my_originality (LIB-2022 -> Livre achete en 2022 ; BDP-2022-12 -> Pret de 01/12/2022 ; DON-2022 -> Don de 01/01/2022) ...
 - suppression de alternative_id_1 si pas ark:/
 - suppression des =inconnu ..."
+- vérification si BDP-AAAA-MM ou DON-AAAA ou LIB-AAAA
+- prise en compte si provenance fichier BDP Web ou Mail. (995$a ,995$f , 995$k)
+- si BDP-xxxx -> alors num doit etre 0
+- si LIB- et DON- alors numero different de 0
 
 AFAIRE
 - verification si numero d'acces est un nombre.
 - vérification si fichier source est un fichier unimarc (message par GUI au lieu de quitter).
-- vérification si BDP-AAAA-MM ou DON-AAAA ou LIB-AAAA ( par date pattern en REGEX "^(?:\\d{4})-(?:\\d{2})-(?:\\d{2})T(?:\\d{2}):(?:\\d{2}):(?:\\d{2}(?:\\.\\d*)?)(?:(?:-(?:\\d{2}):(?:\\d{2})|Z)?)$")
-
-
-
-
-
