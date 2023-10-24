@@ -1,0 +1,42 @@
+C:\Users\bib39\AppData\Local\Programs\Python\Python312\Scripts\pyinstaller.exe  ^
+--clean ^
+--noconfirm ^
+--onefile ^
+--clean ^
+--path=C:\BQPan2bq_paquet ^
+--path=C:\BQPan2bq_paquet\fonctions ^
+--icon="C:\BQPan2bq_paquet\Icons\biblioteq-pan2bq.ico" ^
+--add-data C:\BQPan2bq_paquet\UI\BQimport_unimarc.ui;UI ^
+--add-data C:\BQPan2bq_paquet\UI\BQimport_unimarc_aide.ui;UI ^
+--add-binary C:\BQPan2bq_paquet\Tools\yaz-marcdump;Tools ^
+--add-data C:\BQPan2bq_paquet\fonctions\fonctionsgenerales.py;fonctionsgenerales.py ^
+--add-data C:\BQPan2bq_paquet\fonctions\fonctionunimarcfr.py;fonctionunimarcfr.py ^
+--add-data C:\BQPan2bq_paquet\fonctions\convertyazmarcdump.py;convertyazmarcdump.py ^
+--add-data C:\BQPan2bq_paquet\fonctions\fonctionunimarcfr.py;fonctionunimarcfr.py ^
+--add-data C:\BQPan2bq_paquet\fonctions\fonctionsui.py;fonctionsui.py ^
+--add-data C:\BQPan2bq_paquet\fonctions\fonctionlocationgenre_995k.py;fonctionlocationgenre_995k.py ^
+--exclude-module pyQt5.QtBluetooth ^
+--exclude-module pyQt5.QtMultimedia ^
+--exclude-module pyQt5.QtMultimediaWidgets ^
+--exclude-module pyQt5.QtNetwork ^
+--exclude-module pyQt5.QtNfc ^
+--exclude-module pyQt5.QtOpenGL ^
+--exclude-module pyQt5.QtPositioning ^
+--exclude-module pyQt5.QtPrintSupport ^
+--exclude-module pyQt5.QtQml ^
+--exclude-module pyQt5.QtQuick ^
+--exclude-module pyQt5.QtQuick3D ^
+--exclude-module pyQt5.QtQuickWidgets ^
+--exclude-module pyQt5.QtRemoteObjects ^
+--exclude-module pyQt5.QtSensors ^
+--exclude-module pyQt5.QtSerialPort ^
+--exclude-module pyQt5.QtSql ^
+--exclude-module pyQt5.QtSvg ^
+--exclude-module pyQt5.QtTest ^
+--exclude-module pyQt5.QtTextToSpeech ^
+--exclude-module pyQt5.QtWebChannel ^
+--exclude-module pyQt5.QtWebSockets ^
+--exclude-module pyQt5.QtWinExtras ^
+--exclude-module pyQt5.QtXml ^
+--exclude-module pyQt5.QtXmlPatterns ^
+pan2bq_gui.py

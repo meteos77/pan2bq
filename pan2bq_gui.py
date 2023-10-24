@@ -18,12 +18,15 @@ yaz (outil yaz-marcdump pour convertion en utf8)
 import os
 from pathlib import Path
 import sys
-
+import time
 from PyQt5 import QtWidgets
 from PyQt5.Qt import QDir
 from PyQt5.QtWidgets import QDialog, QApplication, QFileDialog, QMessageBox
 from PyQt5.QtCore import QTranslator, QLocale
 from PyQt5.uic import loadUi
+
+#print(sys._MEIPASS)
+#time.sleep(9000)
 
 
 sys.path.insert(0, './fonctions')
@@ -302,7 +305,7 @@ app = QApplication(sys.argv)
 repertexec = resource_path('/Icons/biblioteq-pan2bq.ico')
 icone = os.path.join(repertexec, "Icons/biblioteq-pan2bq.ico")
 # mettre la même icone pour toutes les fenêtres de l'application
-app.setWindowIcon(QtGui.QIcon(icone))
+# app.setWindowIcon(QtGui.QIcon(icone))
 
 app.setApplicationDisplayName("PAN2BQ version 2023-10-24")
 ## Debut TRADUCTIONapp = QApplication
