@@ -45,29 +45,37 @@ repertoiretravailcsv = ""
 #repertoiretravailpan = os.environ['REPERTOIRETRAVAILPAN']
 #repertoiretravailcsv = os.environ['REPERTOIRETRAVAILCSV']
 
+
+
+def resource_path(relative_path):
+    """La doc est ici: https://pyinstaller.org/en/stable/runtime-information.html"""
+    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+        repertexec = sys._MEIPASS # programme traité par pyinstaller
+        return repertexec
+    else:
+        repertexec = os.path.dirname(os.path.abspath(__file__)) # non traité
+        print(repertexec)
+        return repertexec
+
+
+
+
 class EcranAide(QDialog):
     """Affichage ecran Aide"""
     def __init__(self):
         super().__init__()
-#        super(EcranAide,self).__init__()
-        #loadUi("UI/BQimport_unimarc_aide.ui",self)
-        bundle_dir = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
-        loadUi(bundle_dir / 'UI/BQimport_unimarc_aide.ui', self)
+        repertexec = resource_path('/UI/Qimport_unimarc_aide.ui')
+        ecran_aide = os.path.join(repertexec, "UI/BQimport_unimarc_aide.ui")
+        loadUi(ecran_aide, self)
+
 
 class MainWindow(QDialog):
     """ Fenêtre principale. """
     def __init__(self):
         super().__init__()
-        #super(MainWindow, self).__init__()
-############################################
-        # loadUi(bundle_dir / 'BQimport_unimarc.ui', self) # ligne orignale
-        # pour faire un pyinstaller --onifile
-        # This checks whether the sys._MEIPASS attribute exists
-        # (i.e. are we running the bundled executable?),
-        # if not, we fall back to the location of the script.
-        bundle_dir = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent))
-############################################
-        loadUi(bundle_dir / 'UI/BQimport_unimarc.ui', self)
+        repertexec = resource_path('/UI/Qimport_unimarc.ui')
+        ecranP = os.path.join(repertexec, "UI/BQimport_unimarc.ui")
+        loadUi(ecranP, self)
 
        # Partie aide (fichier UI externe)
         self.bouton_aide.clicked.connect(self.aide)
@@ -291,7 +299,12 @@ class MainWindow(QDialog):
             print("probleme a régler")
 
 app = QApplication(sys.argv)
+repertexec = resource_path('/Icons/biblioteq-pan2bq.ico')
+icone = os.path.join(repertexec, "Icons/biblioteq-pan2bq.ico")
+# mettre la même icone pour toutes les fenêtres de l'application
+app.setWindowIcon(QtGui.QIcon(icone))
 
+app.setApplicationDisplayName("PAN2BQ version 2023-10-24")
 ## Debut TRADUCTIONapp = QApplication
 locale = QLocale()
 translators = []
