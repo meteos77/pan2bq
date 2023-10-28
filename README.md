@@ -7,12 +7,7 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 ## pan2bq est un outil pour transformer les fichiers unimarc (.pan) vers un fichier au format csv (.csv) importable dans BiblioteQ.
 ------------------------------------------------------------
 
-SOMMAIRE :
-Installation testé sur LinuxMint21.2.
-Modules python à installer.
-Description.
-Résumé de la transformation des champs Unimarc.
-Résumé des champs de la Base BiblioteQ.
+
 ------------------------------------------------------------
 
 
