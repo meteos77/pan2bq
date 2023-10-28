@@ -24,6 +24,7 @@ FAIT
 - prise en compte si provenance fichier BDP Web ou Mail. (995$a ,995$f , 995$k)
 - si BDP-xxxx -> alors num doit etre 0
 - si LIB- et DON- alors numero different de 0
+- champ 606$a dans category
 
 AFAIRE
 - verification si numero d'acces est un nombre.

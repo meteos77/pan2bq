@@ -267,37 +267,18 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
                 my_callnumber= normalize('NFC', my_callnumber_temp)
 
 # category
-# (unimarc 606$a)
-# voir pour parcourir tous les champs 606$a et concatener
-    #global rec
-    #new_606a_fields = []							# variable to collect the 020 fields as "invalid" subfield z's instead of subfield a's
-    #new_606a_subfields = []							# variable to collect the print ISBNs to add to the 776 field
-    #if len(rec.get_fields('606')) > 0:					# record contains 020 ISBN fields
-    #    for rec_606 in rec.get_fields('606'):			# iterate through each of the 020 fields
-    #        msg += '606s: YES\n'
-    #        if len(rec_606.get_subfields('a')) > 0:			# the 020 field has a subfield a
-    #            for rec_606a in rec_606.get_subfields('a'):	# iterate through the subfield a's
-    #                msg += '606a: '+str(rec_606a)+'\n'
-    #                new_606z_field = Field(tag='606', indicators=[' ',' '], subfields=['z', rec_606a])
-    #                new_606z_fields.append(new_606z_field)
-    #                new_606z_subfields.append(rec_0606a)
-    #        rec.remove_field(rec_606)
-
-     #   for new_606z_field in new_606z_fields:
-      #      rec.add_ordered_field(new_606z_field)
-       #     my_category = new_606z
-
     my_category = ""
     my_category_temp = ""
-    for field in notice.get_fields('606'):
-        if field['a'] is not None:
-            my_category_temp = field['a']
-            my_category = normalize('NFC', my_category_temp)
-        elif field['a'] is None:
-            my_category = "category vide"
-        else:
-            my_category = "Unimarc 606$a pas trouvé"
-            pass
+    my_category_temp2 = []
+    rec_606s = notice.get_fields('606')
+    for rec_606 in rec_606s:
+        for sub_a in rec_606.get_subfields('a'):
+            my_category_temp = sub_a
+            my_category_temp = normalize('NFC', my_category_temp)
+            my_category_temp2.append(my_category_temp)
+            my_category = '<br>'.join(my_category_temp2)
+            print(my_category)
+
 
 # condition
 # IDEE : si achat de l'année mettre Neuf
