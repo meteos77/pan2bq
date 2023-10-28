@@ -1,17 +1,33 @@
 I'm not a developer, so there's no guarantee that it will work for you.
 Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez vous.
-
+### pan2bq version 2023-10-28
 ------------------------------------------------------------
 ### Merci à "Textbrowser" pour son superbe logiciel de gestion de bibliothèque : BiblioteQ.
 ------------------------------------------------------------
 ## pan2bq est un outil pour transformer les fichiers unimarc (.pan) vers un fichier au format csv (.csv) importable dans BiblioteQ.
 ------------------------------------------------------------
+## Description
 
+* Le format du fichier csv est adapté pour l'importation via l'import csv de BiblioteQ (modele 1).
+
+* Place les données du fichier unimarc dans les champs de BiblioteQ.
+* 
+* Certains champs 995 (spécifiques à l'échange de données entre bibliothèques française) sont traités.
+* 
+* Voir le fichier fonctions/fonctionunimarcfr.py pour les détails des transformations.
+
+* Demande de renseigner l'origine des livres et le place dans le champs origine et originality (énumerations)
+
+* Demande de renseigner le numero d'acces
+    * si 0 alors prend l'information dans 995$f ou le 995$a.
+    * prend le numéro spécifié est ajoute +1
+    
+* Le nom du fichier destination est par défaut le nom du fichier source + .csv.
 
 ------------------------------------------------------------
 
 
-###Prend en compte les formats
+##Prend en compte les formats
 - Unimarc 2709 encodé en ISO5426 (traitement par yaz-marcdump).
 - Unimarc 2709 encodé en utf8.
 
@@ -39,21 +55,15 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
   * - PyQt5 5.14.1 (pip install PyQt5).
   * - unidecode 1.1.1 .
 ------------------------------------------------------------
-## Description
-
-* - Le format du fichier csv est adapté pour l'importation via l'import csv de BiblioteQ (modele 1).
-* - Place les données du fichier unimarc dans les champs de BiblioteQ.
-* - Certains champs 995 (spécifiques à l'échange de données entre bibliothèques française) sont traités.
-* - Voir le fichier fonctions/fonctionunimarcfr.py pour les détails des transformations.
+## Distribution (dans répertoire Distribution)
 
 
-* - Demande de renseigner l'origine des livres et le place dans le champs origine et originality (énumerations)
-* - Demande de renseigner le numero d'acces
-    * - si 0 alors prend l'information dans 995$f ou le 995$a.
-    * - prend le numéro spécifié est ajoute +1
-* - Le nom du fichier destination est par défaut le nom du fichier source + .csv.
+* - Script pour créer paquet Debian .deb.
+* - Scripts pyinstaller (Linux et Windows).
 ------------------------------------------------------------
-## Résumé de la transformation des champs Unimarc vers le fichier csv (champs de la base de données de BiblioteQ).
+
+------------------------------------------------------------
+##Résumé de la transformation des champs Unimarc vers le fichier csv (champs de la base de données de BiblioteQ).
 
 * - 003   : Identifiant ark (alternate_id_1).
 * - 010$a : isbn13 ou isbn10 (isbn13 ou id) - convertion des isbn13 978 en isbn10 pour champ id.
@@ -84,7 +94,7 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 
 
 ------------------------------------------------------------
-### Résumé des champs de la Base BiblioteQ et les champs Unimarc (32 champs) et leur traduction Fr_fr.
+## Résumé des champs de la Base BiblioteQ (32 champs) et les rubriques Unimarc et leur traduction Fr_fr.
 
 
 | CHAMPSDE LA BDD BiblioteQ | UNIMARC         | DESCRIPTION                          |
@@ -124,4 +134,4 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 
 -------------------------------------------------------------------------------------
 
-## Windows10.
+
