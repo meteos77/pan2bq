@@ -21,8 +21,8 @@ def resource_path(relative_path):
 
 def convertiso5426toutf8(sourcefile, destinationfile):
     """yaz-marcdump -f ISO5426 -t UTF-8 -o marc $FichierSource > $FichierDestination_1 """
-    repertexec = resource_path('/Tools/yaz-marcdump')
-    appyaz = os.path.join(repertexec, "Tools/yaz-marcdump")
+    #repertexec = resource_path('/Tools/yaz-marcdump')
+    #appyaz = os.path.join(repertexec, "Tools/yaz-marcdump")
     cmd = "yaz-marcdump -f ISO5426 -t UTF-8 -o marc -l 9=97 %s > %s"%(sourcefile,destinationfile)
     try:
         print("Debut de la convertion par yaz-marcdump")
