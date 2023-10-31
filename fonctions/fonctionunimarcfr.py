@@ -315,15 +315,10 @@ def analyseurunimarcfr(notice,originaly,numeroacces):
 # deweynumber
     my_deweynumber = ""
     my_deweynumber_temp = ""
-    for field in notice.get_fields('995'):
-        if field['k'] is not None:
-            my_deweynumber_temp = field['k']
-            my_deweynumber = normalize('NFC', my_deweynumber_temp)
-        elif field['k'] is None:
-            my_deweynumber= ""
-        else:
-            my_deweynumber=""
-            pass
+    for field in notice.get_fields('676'):
+            if field['a'] is not None:
+                my_deweynumber_temp = field['a']
+                my_deweynumber = normalize('NFC', my_deweynumber_temp)
 
 # edition
     my_edition = 1

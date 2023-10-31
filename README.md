@@ -57,13 +57,17 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 ------------------------------------------------------------
 ## Distribution (dans répertoire Distribution)
 
+* - Le format du fichier csv est adapté pour l'importation via l'import csv de BiblioteQ (modele 1).
+* - Place les données du fichier unimarc dans les champs de BiblioteQ.
+* - Certains champs 995 (spécifiques à l'échange de données entre bibliothèques française) sont traités.
+* - Voir le fichier fonctions/fonctionunimarcfr.py pour les détails des transformations.
 
 * - Script pour créer paquet Debian .deb.
 * - Scripts pyinstaller (Linux et Windows).
 ------------------------------------------------------------
 
 ------------------------------------------------------------
-##Résumé de la transformation des champs Unimarc vers le fichier csv (champs de la base de données de BiblioteQ).
+## Résumé de la transformation des champs Unimarc vers le fichier csv (champs de la base de données de BiblioteQ).
 
 * - 003   : Identifiant ark (alternate_id_1).
 * - 010$a : isbn13 ou isbn10 (isbn13 ou id) - convertion des isbn13 978 en isbn10 pour champ id.
@@ -83,12 +87,13 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 * - 333$a : Public cible (target_audience).
 * - 461$v : Numéro de volume (volume_number).
 * - 606$a : Catégorie du document (category).
+* - 676$a : Cotation Dewey (deweynumber).
 * - 700$a : Nom de l'auteur (author).
 * - 770$b : Prénom de l'auteur (author).
 * - 995$a : Numéro d'accès (accession_number).
-* - 995$f : Numéro Dewey (deweynumber & callnumber).
+* - 995$f : Cote (callnumber).
 * - 995$j : Public cible (target_audience).
-* - 995$k : Numéro Dewey (deweynumber & callnumber).
+* - 995$k : Cote (callnumber).
 * - 995$m : Date de prêt BDP (purchase_date).
 * - 995$n : Date de retour BDP (date_of_reform).
 
@@ -103,12 +108,12 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 | alternate_id_1            | 003             | Identifiant ark                      |
 | author                    | 700$a + 700$b   | Nom de l'auteur + Prénom de l'auteur |
 | binding_type              | 010$b           | Type de reliure                      |
-| callnumber                | 995$f           | Numéro Dewey                         |
+| callnumber                | 995$f ou 995$k  | Numéro Dewey                         |
 | category                  | 606$a           | Catégorie du document                |
 | condition                 |                 | État                                 |
 | date_of_reform            | 995$n           | Date de retour BDP                   |
 | desccription              | 330$a           | Résumé du document                   |
-| deweynumber               | 995$f ou 995$k  | Numéro Dewey                         |
+| deweynumber               | 676$a           | Cotation Dewey                       |
 | edition                   |                 | Édition                              |
 | id                        | 010$a           | ISBN10                               |
 | isbn13                    | 010$a           | ISBN13                               |
