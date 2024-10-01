@@ -232,7 +232,7 @@ compréhensible par le logiciel BiblioteQ</string>
     </rect>
    </property>
    <property name="text">
-    <string>Les fichiers reçus par mail et les fichiers téléchargés sur le site de la BDP. (995$a ou 995$f)</string>
+    <string>Les fichiers reçus par mail et les fichiers téléchargés sur le site de la BDP 995+.</string>
    </property>
   </widget>
  </widget>

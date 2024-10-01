@@ -1,6 +1,6 @@
 I'm not a developer, so there's no guarantee that it will work for you.
 Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez vous.
-### pan2bq version 2023-10-28
+### pan2bq version 2024-05-30
 ------------------------------------------------------------
 ### Merci à "Textbrowser" pour son superbe logiciel de gestion de bibliothèque : BiblioteQ.
 ------------------------------------------------------------
@@ -85,7 +85,8 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 * - 225$v : Numéro de volume (volume_number).
 * - 330$a : Résumé du document (desccription)
 * - 333$a : Public cible (target_audience).
-* - 461$v : Numéro de volume (volume_number).
+* - 461$t : Titre de la série (title).
+* - 461$v : Numéro de volume (volume_number et title).
 * - 606$a : Catégorie du document (category).
 * - 676$a : Cotation Dewey (deweynumber).
 * - 700$a : Nom de l'auteur (author).
@@ -126,14 +127,15 @@ Je ne suis pas développeur donc aucune garantie que cela fonctionne bien chez v
 | multicvolume_set_isbn     |                 | Volume multiple                      |
 | origine                   |                 | Origine du document                  |
 | originality               |                 | Origine du document - enumeration    |
-| pdate                     | 210$d           | Date d'édition                       |
-| place                     | 210$a           | Lieu d'édition                       |
+| pdate                     | 210$d & 214$d   | Date d'édition                       |
+| place                     | 210$a & 210$a   | Lieu d'édition                       |
 | price                     | 010$d           | Prix                                 |
-| publisher                 | 210$c           | Éditeur                              |
+| publisher                 | 210$c & 210$c   | Éditeur                              |
 | purchase_date             | 995$m           | Date de prêt BDP                     |
 | quantity                  |                 | Quantité                             |
 | target_audience           | 995$j           | Public cible                         |
-| title                     | 200$a           | Titre                                |
+| title                     | 461$t & 461$v   | Titre (série) + , Numéro de volume + ":"|
+| title suite               | 200$a & 200$b   | Titre                                |
 | url                       |                 | Url                                  |
 | volume_number             | 225$v           | Numéro de volume                     |
 

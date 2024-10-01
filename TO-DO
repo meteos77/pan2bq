@@ -22,11 +22,12 @@ FAIT
 - suppression des =inconnu ..."
 - vérification si BDP-AAAA-MM ou DON-AAAA ou LIB-AAAA
 - prise en compte si provenance fichier BDP Web ou Mail. (995$a ,995$f , 995$k)
-- si BDP-xxxx -> alors num doit etre 0
-- si LIB- et DON- alors numero different de 0
+- vérification : si BDP-xxxx -> alors num doit etre 0 & si LIB- et DON- alors numero different de 0
 - champ 606$a dans category
 - champ 676$a dans deweynumber
-- 
+- le fichier csv.writer est ouvert avec l'option (quoting=csv.QUOTE_ALL) (pour les numéro d'accès : 039000 au lieu de 39000 avec libreoffice)
+- analyseur correction 210$c et 214$c (2024-02-26)
+
 AFAIRE
-- verification si numero d'acces est un nombre.
+- verification si numero d'acces est un nombre.(NON car Cxxxx de la BDP)
 - vérification si fichier source est un fichier unimarc (message par GUI au lieu de quitter).

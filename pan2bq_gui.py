@@ -100,12 +100,14 @@ class MainWindow(QDialog):
         # Pour quitter l'application.
         self.bouton_exit.clicked.connect(self.exitapp)
 
+
 ############ LES FONCTIONS #################
     def affiche_numero_notice(self, num_notice):
         """ Affiche dans l'interface le numéro de notice actuelle. """
         if DEBUG == 1:
             print(num_notice)
         self.lineEdit_num_notice.setText(str(num_notice))
+
 
     def aide(self):
         """ affiche un écran d'aide. """
@@ -115,9 +117,12 @@ class MainWindow(QDialog):
         print("aide : $ yaz-marcdump -f ISO5426 -t UTF-8 -o marc \
                 -l 9=97 fichier.pan > fichier.utf8.pan")
 
+
     def browsefilescsv(self):
         """ Définir le requesteur fichier csv. """
         QFileDialog.getSaveFileName(self, self.tr('Sauver un fichier en csv format BiblioteQ'), QDir.homePath() + "/Bureau", "*.csv")
+
+
     def browsefilesunimarc(self):
         """ Après la séléction d'un fichier le traitement commence. """
         try:
@@ -176,12 +181,14 @@ class MainWindow(QDialog):
         except (RuntimeError,TypeError, ValueError, NameError):
             pass
 
+
     def recuperation_notice_numerosurretour(self):
         """ Mise à jour du slider si entrée par clavier touche retour. """
         num_notice = self.lineEdit_num_notice.text()
         print(type(num_notice))
         num_notice = int(num_notice)
         self.slider_noticenum.setValue(num_notice)
+
 
     def recuperation_notice_numero(self,notice_num):
         """ affichage de la notice """
@@ -216,6 +223,7 @@ class MainWindow(QDialog):
 
         if originaly:
             valide_originaly = "ok"
+            originaly = originaly.replace("_","-")
         else:
             print(self.tr("Pas d'origine spécifiée - Merci de compléter."))
             QMessageBox.warning(self,self.tr("Attention"),self.tr("L'origine des livres n'est pas spécifiée"))
@@ -225,7 +233,9 @@ class MainWindow(QDialog):
             print(self.tr("Pas de numero d'acces spécifié - Merci de compléter."))
             QMessageBox.warning(self,self.tr("Attention"),self.tr("Le numéro d'accès n'est pas spécifié"))
 
-        print("la varialbe originaly contient : " + originaly)
+        print("la variable originaly contient : " + originaly)
+        # 2024-06-04 : Ajout vérification "-" au lieu de "_"
+
         if "BDP" in originaly:
             if numeroacces == "0":
                 print("OK BDP avec 0")
@@ -244,7 +254,6 @@ class MainWindow(QDialog):
                 valide_patron="pb"
                 print(self.tr("Erreur Merci de vérifier les données entrées ne correspondent pas au modèle BDP-AAAA-MM"))
                 QMessageBox.critical(self,self.tr("Attention"),self.tr("Merci de vérifier les données entrées ne correspondent pas au modèle BDP-AAAA-MM"))
-
 
 
         if "LIB" in originaly:

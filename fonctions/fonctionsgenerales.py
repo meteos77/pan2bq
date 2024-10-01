@@ -8,6 +8,8 @@ version 2023-08-29 : ajout des 3 nouveaux champs
 my_date_of_reform,
 my_origin,
 my_purchase_date,
+version 2023-12--31 :
+ajout "quoting=csv.QUOTE_ALL" dans csv.writer pour avoir le 039000 au lieu de 39000
 """
 
 import sys
@@ -66,7 +68,7 @@ def generatecsv(sourcefileutf8, destinationfile,originaly,numeroacces):
 
     with open(sourcefileutf8, 'rb') as fichierdonnees:
         with open(destinationfile, 'w', newline='', encoding='utf-8') as fichiercsv:
-            writer = csv.writer(fichiercsv, delimiter=',')
+            writer = csv.writer(fichiercsv, delimiter=',', quoting=csv.QUOTE_ALL)
             writer.writerow(entete)
             i = -0
             # lecture du fichier BDP et appel de la fonction analyseurUniMarcFr

@@ -4,7 +4,7 @@ Maintainer: meteos77
 Package: BiblioteQ-pan2bq
 Priority: optional
 Section: Database
-Version: 2023-10-15
+Version: 2023-12-31
 Description: transformation fichier Unimarc en csv format import BiblioteQ modèle 1
  Bienvenue dans BiblioteQ-pan2bq
  Transforme fichier unimarc en csv format BiblioteQ Modèle 1.
